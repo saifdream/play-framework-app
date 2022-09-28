@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Purchase Entry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User's List</title>
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="css/create.css">
+</head>
+<body >
+<section>
+	<div class="container">
+        <div class="form-horizontal row">
+            <div class="col-md-10 col-md-offset-1 boundary">
+            <form class="form-horizontal" name="sales" onsubmit="submit(sales)" action="" method="post">
+                <!-- PAGE HEADER -->
+	            <div id="header" class="page-header">
+	    	        <h4><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;New Sale Details</h4>
+		        </div>
+
+                <div>
+		            <div class="form-horizontal line col-md-6">
+				            <div class="form-group form-group-sm">
+				              <label class="control-label col-sm-1"></label>
+		                      <div class="col-sm-6">
+		                        <h4 style="color:#0b7f05;"><span class="glyphicon glyphicon-user"></span> &nbsp;Customer's Details</h4><hr>
+		                      </div>
+		                    </div>
+		        
+				            <!-- Bill To -->
+		      	            <div class="form-group form-group-sm">
+		                      <label class="control-label col-sm-4" for="fname">Bill To :</label>
+		                      <div class="col-sm-8">
+		                        <input type="text" name="BillTo" class="form-control input-sm" placeholder="Bill To" required size="40">
+		                      </div>
+		                    </div>
+		        
+		                    <!-- E-mail : -->
+		      	            <div class="form-group form-group-sm">
+		                      <label class="control-label col-sm-4" for="fname">E-mail :</label>
+		                      <div class="col-sm-8">
+		                        <input type="email" name="Email" class="form-control input-sm" placeholder="E-mail" required size="35">
+		                      </div>
+		                    </div>
+		        
+		                    <!-- Payment Type -->
+		      	            <div class="form-group form-group-sm">
+		                      <label class="control-label col-sm-4" for="fname">Payment Type :</label>
+		                      <div class="col-sm-8">
+		                        <select name="PaymentType" class="form-control input-sm" required>
+						            <option  value=''>None Selected</option>
+                                    <option  value='Cash'>Cash</option>
+                                    <option  value='bCash'>bCash</option>
+                                    <option  value='Card'>Visa Card</option>
+                                    <option  value='Card'>Master Card</option>
+                                    <option  value='Pay Pal'>Pay Pal</option>
+					            </select>
+		                      </div>
+		                    </div>
+		        
+		                    <!-- Phone -->
+		      	            <div class="form-group form-group-sm">
+		                      <label class="control-label col-sm-4" for="fname">Phone :</label>
+		                      <div class="col-sm-8">
+		          	            <input type="text" name="Phone" class="form-control input-sm" placeholder="Phone" required>
+				              </div>
+		                    </div>
+		        
+		                    <!-- Address -->
+		      	            <div class="form-group form-group-md">
+		                      <label class="control-label col-sm-4" for="fname">Address :</label>
+		                      <div class="col-sm-8">
+		          	            <textarea rows="2" cols="40" name="Address" class="form-control input-sm" placeholder="Address" required></textarea>
+				              </div>
+		                    </div>
+		        
+		                    <!-- Customer Type -->
+		      	            <div class="form-group form-group-sm">
+		                      <label class="control-label col-sm-4" for="fname">Customer Type:</label>
+		                      <div class="col-sm-8">
+                                <select name="CustomerType" class="form-control input-sm" required>
+					              <option  value=''>None Selected</option>
+                                  <option  value='New'>New</option>
+                                  <option  value='Weekly'>Weekly</option>
+                                  <option  value='Monthly'>Monthly</option>
+                                  <option  value='Regular'>Regular</option>
+                                  <option  value='Regular'>Sometime</option>
+					            </select>
+				              </div>
+		                    </div>
+                    </div>
+
+		            <div class="form-horizontal divstylepurchase col-md-6">
+				        <!-- Add Product -->
+		      	        <div class="form-group form-group-sm">
+		      	          <label class="control-label col-sm-1"></label>
+		                  <div class="col-sm-6">
+		                    <h4 style="color:#0b7f05;"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add a Product</h4><hr>
+		                  </div>
+		                </div>
+			
+		                <!-- ID -->
+		      	        <div class="form-group form-group-sm">
+		                  <label class="control-label col-sm-4">ID :</label>
+		                  <div class="col-sm-7">
+		                    <input type="hidden" min="1" class="form-control" name="sl"  />
+		                    <input type="text" class="form-control input-sm" name="id" placeholder="Enter Product ID" onChange="getProduct()" />
+		                  </div>
+		                </div>
+		        
+		                <!-- Name -->
+		      	        <div class="form-group form-group-sm">
+		                  <label class="control-label col-sm-4">Name :</label>
+		                  <div class="col-sm-7">
+		                    <input type="text" class="form-control input-sm" name="name" readonly="readonly" />
+		                  </div>
+		                </div>
+		        
+		                <!-- Details -->
+		      	        <div class="form-group form-group-sm">
+		                  <label class="control-label col-sm-4">Details :</label>
+		                  <div class="col-sm-7">
+		                    <input type="text" class="form-control input-sm" name="description" readonly="readonly" />
+		                  </div>
+		                </div>
+		        
+		                <!-- Qty -->
+		      	        <div class="form-group form-group-sm">
+		                  <label class="control-label col-sm-4">Qty :</label>
+		                  <div class="col-sm-7">
+		                    <input type="number" min="1" class="form-control input-sm" name="quantity" placeholder="Product Quantity" ng-model="quantity" ng-change="updateAmount()" />
+		                  </div>
+		                </div>
+		        
+		                <!-- Price -->
+		      	        <div class="form-group form-group-sm">
+		                  <label class="control-label col-sm-4">Price :</label>
+		                  <div class="col-sm-7">
+		                    <input type="text" min="1" class="form-control input-sm" name="price" readonly="readonly" />
+		                  </div>
+		                </div>
+		        
+		                <!-- Amount -->
+		      	        <div class="form-group form-group-sm">
+		                  <label class="control-label col-sm-4">Amount :</label>
+		                  <div class="col-sm-7">
+		                    <input type="text" class="form-control input-sm" name="amount" readonly="readonly"/>
+		                  </div>
+		                </div>
+		        
+		                <!-- Add Product -->
+		      	        <div class="form-group form-group-sm">
+		      	          <label class="control-label col-sm-4"></label>
+		                  <div class="col-sm-7" id="myButtons">
+		                    <button type="button" value="" class="btn btn-default btn-sm" data-loading-text="Adding ..." onclick="addRow()">
+                                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add Product
+                            </button>
+		                  </div>
+		                </div>
+		        </div>
+                </div>
+		        <div class="form-horizontal divtablestyle">
+                    <div class="table table-responsive">
+			            <table class="table table-condensed">
+				            <thead>
+					            <tr>
+						            <th> Sl.</th>
+						            <th> ID </th>
+						            <th> Name </th>
+						            <th> Quantity </th>
+						            <th> Price </th>
+						            <th> Amount</th>
+						            <th> Remove</th>
+					            </tr>
+				            </thead>
+				            <tbody>
+					            <tr style="text-align: center">
+						            <td> 01 </td> 
+						            <td> A001 </td>
+						            <td> RAM </td>
+						            <td> 01 </td>
+						            <td> 10,000/- </td>
+						            <td> 10,000/- </td>
+						            <td>
+							            <button type="button" value="" class="btn btn-default btn-xs" onclick="removeRow(product.id)">
+                                            Remove &nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+						            </td>
+					            </tr>
+					            <tr>
+						            <td colspan="5" style="text-align: right"><b>Total(BDT) =</b></td>
+						            <td>
+							            <b> </b>
+							            <input type="hidden" class="form-control" name="totalAmount" />
+						            </td>
+						            <td></td>
+					            </tr>
+				            </tbody>
+			            </table>
+                    </div>
+		        </div>
+	        </form>
+            </div>
+        </div>
+	</div>
+</section>
+
+	<script type="text/javascript" src="jquery/jquery-2.0.3.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    
+	<script type="text/javascript">  
+    $(document).ready(function(){ 
+        $("#myButtons .btn").click(function(){
+            $(this).button('loading').delay(1000).queue(function() {
+                $(this).button('reset');
+                $(this).dequeue();
+            });        
+        });
+    });
+    
+    $(document).ready(function () {
+    	$('.dropdown').on("mouseenter",function(){
+            $(this).addClass('open');
+        }).on('mouseleave',function(){
+            $(this).removeClass('open'); 
+        });
+        
+    	$('.post:last').addClass('last');
+    	$('.widget_featured_entries li:last').addClass('last');
+    	$('#cancel-comment-reply-link').on('click', function(){
+    		$('#commentform').each (function(){
+    		  this.reset();
+    		});
+    	});
+    });
+    
+	</script>
+</body>
+</html>

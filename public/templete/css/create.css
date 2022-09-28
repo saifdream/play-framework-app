@@ -1,0 +1,95 @@
+@CHARSET "ISO-8859-1";
+
+<!--@media (min-width: 768px) {-->
+<!--.container {-->
+<!--	width: 770px;-->
+<!--}-->
+
+#wrapper {
+	display: block;
+	margin: 0 auto;
+	text-align: left;
+	min-width: 720px;
+	max-width: 1000px;
+}
+
+#header {
+	font-family: "Perpetua Titling MT";
+	text-align: center;
+	background-color: ;
+	color: #8a8a8a;
+    padding-left: 20px;
+}
+
+label {
+	color: #5a5a5a;
+	font-family: "Times New Roman";
+}
+		
+button {
+	text-color: #ffffff;
+}
+
+p {
+	color: #ffffff;
+}
+		
+th {
+	text-align: center;
+	<!--border: 1px solid #0a6594;-->
+	border-collapse: collapse;
+}
+
+td {
+	font-family: "Times New Roman";
+	font-size: 14px;
+	padding: auto;
+}
+
+.boundary {
+	border-style: solid;
+	border-color: #c2d7ff;
+    border-width: 1px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.line {
+	padding-right: 20px;
+	margin-top: 0px;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-right-style: solid;
+    border-color: #c2d7ff;
+}
+
+.divstyle {
+	padding-left: 20px;
+}
+    
+.divtablestyle {
+	padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+}
+
+.genderstyle {
+	padding-bottom: 28px;
+	-o-padding-bottom: 40px;
+	-moz-padding-bottom: 40px;
+	-ms-padding-bottom: 40px;
+	-webkit-padding-bottom: 40px;
+}
+
+username.ng-valid {
+      color: green;
+    }
+
+.ui-datepicker th { 
+	background-color: white; 
+}

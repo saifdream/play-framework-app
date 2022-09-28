@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit</title>
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="css/bootstrap-responsive.min.css" media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="jquery/jquery-ui.css" media="all" />
+	<link rel="stylesheet" href="css/bootstrap-multiselect.css" media="all" />
+	<link rel="stylesheet" href="css/create.css" media="all" />
+</head>
+<body ng-app="confirmation" ng-controller="confirmationController">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-md-offset-3">
+			
+				<!-- PAGE HEADER -->
+		      	<div id="header" class="page-header">
+		      		<h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Edit User</h4>
+				</div>
+				<br>
+				<!-- FORM : YOU CAN DISABLE, HTML5 VALIDATION BY USING "novalidate" ATTRIBUTE-->
+		    	<form class="form-horizontal" role="form" name="users" ng-submit="" novalidate>
+		      	
+		      	<!-- USER TYPE -->
+		        <div class="form-group form-group-sm">
+				  <label class="control-label col-sm-4" for="userType">User Type :</label>
+				  	<div class="col-sm-7">
+						<div class="btn-group" dropdown>
+					      <select name="usertype" class="form-control input-sm" id="example-selectAllName" multiple="multiple" ng-model="user.usertype" ng-options="usertype.usertypeId as usertype.Name for usertype in usertypeList" ng-required="true">
+						  </select>
+					   </div>
+					</div>
+				</div>
+				
+		    	<!-- FIRST NAME -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="fname">First Name :</label>
+		          <div class="col-sm-7">
+		            <input type="text" name="fname" class="form-control input-sm" id="fname" ng-model="fname" readonly />
+		          </div>
+		        </div>
+		        
+		        <!-- LAST NAME -->
+		        <div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="lname">Last Name :</label>
+		          <div class="col-sm-7">
+		            <input type="text" name="lname" class="form-control input-sm" id="lname" ng-model="lname" readonly />
+		         </div>
+		        </div>
+		        
+		    	<!-- USERNAME -->
+		        <div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="username">Username :</label>
+		          <div class="col-sm-7">
+			          <input type="text" name="username" class="form-control" ng-model="username" readonly />
+			    </div>
+		        </div>
+		        
+		    	<!-- PASSWORD -->
+		        <div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="password">Password :</label>
+		          <div class="col-sm-7">          
+		            <input type="Password" name="password" class="form-control" ng-model="password" readonly />
+		         </div>
+		        </div>
+		        
+		        <!-- CONTACT NO -->
+		        <div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="contactno">Contact No :</label>
+		          <div class="col-sm-7">
+		            <input type="text" name="contactno" class="form-control input-sm" id="contactno" ng-model="contactno" />
+		        </div>
+		        </div>
+		        
+		        <!-- E-MAIL -->
+		        <div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="email">Email :</label>
+		          <div class="col-sm-7">
+		            <input type="email" name="email" class="form-control input-sm" ng-model="email" id="email" />
+		         </div>
+		        </div>
+		        
+		        <!-- Address -->
+		        <div class="form-group form-group-md">
+		          <label class="control-label col-sm-4" for="Address">Address :</label>
+		          <div class="col-sm-7">
+		            <textarea rows="2" cols="40" class="form-control" name="address" ng-model="address" ></textarea>
+		         </div>
+		        </div>
+		        
+		        <!-- GENDER -->
+		        <div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="gender">Gender :</label>
+		          <div class="col-sm-7">
+		          	<input type="text" name="gender" class="form-control input-sm" id="gender" ng-model="gender" readonly />
+				 </div>
+		        </div>
+		        
+		        <!-- DATE OF BIRTH -->
+		        <div class="form-group form-group-sm">
+		          <label for="dob" class="control-label col-sm-4">Date Of Birth :</label>
+		             <div class="col-sm-7">
+		             	<input type="text" class="form-control input-sm" name="date" id="date" ui-date ng-model="date" readonly />
+		           </div>
+		        </div>
+		        
+		        <!-- DATE OF Joining -->
+		        <div class="form-group form-group-sm">
+		          <label for="dob" class="control-label col-sm-4">Date Of Joining :</label>
+		             <div class="col-sm-7">
+		             	<input type="text" class="form-control input-sm" name="jdate" id="jdate" ui-date ng-model="jdate" readonly />
+		           </div>
+		        </div>
+				
+		        <!-- FROM SUBMISSION -->
+		        <div class="form-group form-group-sm">        
+		          <div class="col-sm-offset-4 col-sm-7">
+		            <button ng-click="confirm()" class="btn btn-primary btn-sm btn-block"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;Confirm</button>
+		          </div>
+		        </div>
+		      	</form>
+	      	</div>
+    	</div>
+    </div>
+    
+    <script type="text/javascript" src="jquery/jquery.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/confirmation.js"></script>
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="js/angularjs-dropdown-multiselect.js"></script>
+    
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$('#example-selectAllName').multiselect({
+				includeSelectAllOption: true,
+				selectAllValue: 0,
+				buttonWidth: '315px'
+			});
+		});
+	</script>
+
+	
+</body>
+</html>

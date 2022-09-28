@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit User</title>
+
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css"  media="all" />
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-multiselect.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/create.css"  media="all" />
+	
+</head>
+<body>
+<section>
+	<div class="container">
+		<div class="row form-horizontal">
+			<div class="col-md-7 col-md-offset-3 boundary">
+			
+			<!-- FORM : YOU CAN DISABLE, HTML5 VALIDATION BY USING "novalidate" ATTRIBUTE-->
+			<form class="form-horizontal" role="form" id="userForm" action="" novalidate>
+			
+			<!-- PAGE HEADER -->
+			<div id="header" class="page-header">
+			    <h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Edit User</h4>
+			</div>
+			<br>
+			
+			<div class="line col-md-6">
+				<!-- FIRST NAME -->
+			    <div class="form-group form-group-sm">
+			         <div class="col-sm-12">
+				         <label class="" for="firstName">First Name : &nbsp;</label>
+				         <input type="text" name="fname" class="form-control input-sm" id="fname" />
+			         </div>
+			    </div>
+			    
+			    <!-- LAST NAME -->
+			    <div class="form-group form-group-sm">
+				     <div class="col-sm-12">
+					     <label class="" for="lastName">Last Name : &nbsp;</label>
+					     <input type="text" name="lname" class="form-control input-sm" id="lname"/>
+				     </div>
+				</div>
+                <!-- E-MAIL -->
+				<div class="form-group form-group-sm">
+		          	<div class="col-sm-12">
+			          	<label class="" for="email">Email :</label>
+			            <input type="email" name="email" class="form-control input-sm" id="email" required />
+		          	</div>
+		        </div>
+			    
+			     <!-- CONTACT NO -->
+			    <div class="form-group form-group-sm">
+		          <div class="col-sm-12">
+			          <label class="" for="contactno">Contact No :</label>
+			          <input type="text" name="contactno" class="form-control input-sm" id="contactno" pattern="/^[0]\d{10}$/" maxlength="11" required />
+		          </div>
+		        </div>
+
+                <!-- Address -->
+		       <div class="form-group form-group-md">
+		         <div class="col-sm-12">
+			          <label class="" for="Address">Address :</label>
+			          <textarea rows="2" cols="40" class="form-control" name="address"></textarea>
+		         </div>
+		       </div>
+			</div>
+			
+			<div class="divstyle col-md-6">
+
+				<!-- USER TYPE -->
+		        <div class="form-group form-group-sm">
+				  <div class="col-sm-12">
+				  	  <label class="" for="userType">User Type :</label><br>
+					  <select name="usertype" class="form-control input-sm" id="usertype" multiple="multiple" required>
+                        <option  value='Executive'>Executive</option>
+                        <option  selected="selected" value='Accountant'>Accountant</option>
+                        <option  value='Manager'>Manager</option>
+                        <option  value='Admin'>Admin</option>
+					  </select>
+				  </div>
+				</div>
+
+				<!-- GENDER -->
+				<div class="form-group form-group-sm">
+			       <div class="col-sm-12">
+				        <label class="" for="gender">Gender :</label>
+                        <input type="text" name="gender" class="form-control input-sm" id="gender" readonly />
+			       </div>
+		        </div>
+				
+				<!-- USERNAME -->
+				<div class="form-group form-group-sm">
+		           <div class="col-sm-12">
+		          	   <label class="" for="username">Username :</label>
+			       	   <input type="text" name="username" id="username" class="form-control" readonly />
+		           </div>
+		        </div>
+				
+                <!-- DATE OF BIRTH -->
+		        <div class="from-inline form-group form-group-sm">
+		          <div class="col-sm-12">
+		          		<label for="dob" class="">Date Of Birth :</label>
+		                <br>
+                        <input type="text" class="form-control input-sm" name="date" id="bdate" readonly />
+		            </div>
+		        </div>
+
+				<!-- DATE OF Joining -->
+				<div class="form-group form-group-sm">
+		          <div class="col-sm-12">
+		             <label for="doj" class="">Date Of Joining :</label>
+                        <div class="date" id="">
+                            <input type="text" class="form-control" name="jdate" readonly />
+                        </div>
+	               </div>
+		        </div>
+		        
+			</div>
+			
+            <!-- FROM SUBMISSION -->
+            <div class="form-group form-group-md">
+                <div class="col-sm-offset-3 col-sm-6" style="padding-left: 30px; padding-right: 30px; margin-top: 10px; margin-bottom: 10px;">
+			       <button onclick="confirm()" class="btn btn-primary btn-sm btn-block"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;Confirm</button>
+                </div>
+            </div>
+            <br>
+
+			</form>
+			</div>
+		</div>
+        <br>
+	</div>
+</section>	
+	<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery-ui.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap-multiselect.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#usertype').multiselect({
+				includeSelectAllOption: true,
+				selectAllValue: 0,
+                buttonWidth: '220px',
+                onChange: function(option, checked, select) {
+                //alert('Changed option ' + $(option).val() + '.');
+            }
+			});
+		});
+	</script>
+</body>
+</html>

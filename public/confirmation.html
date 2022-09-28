@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User's Confirmation</title>
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/create.css">
+</head>
+<body ng-app="confirmation" ng-controller="confirmationController">
+
+	<div class="container">
+	
+		<div class="wrapper">
+			<!-- PAGE HEADER -->
+	      	<div id="header" class="page-header">
+	      		<h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User's Confirmation</h4>
+			</div>
+			<br>
+			<!-- FORM : YOU CAN DISABLE, HTML5 VALIDATION BY USING "novalidate" ATTRIBUTE-->
+	    	<form class="form-horizontal" role="form" name="users" ng-submit="" novalidate>
+	      
+	    	<!-- FIRST NAME -->
+	      	<div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="fname">First Name :</label>
+	          <div class="col-sm-5">
+	            <input type="text" name="fname" class="form-control input-sm" id="fname" ng-model="fname" readonly />
+	          </div>
+	        </div>
+	        
+	        <!-- LAST NAME -->
+	        <div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="lname">Last Name :</label>
+	          <div class="col-sm-5">
+	            <input type="text" name="lname" class="form-control input-sm" id="lname" ng-model="lname" readonly />
+	         </div>
+	        </div>
+	        
+	    	<!-- USERNAME -->
+	        <div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="username">Username :</label>
+	          <div class="col-sm-5">
+		          <input type="text" name="username" class="form-control" ng-model="username" readonly />
+		    </div>
+	        </div>
+	        
+	    	<!-- PASSWORD -->
+	        <div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="password">Password :</label>
+	          <div class="col-sm-5">          
+	            <input type="Password" name="password" class="form-control" ng-model="password" readonly />
+	         </div>
+	        </div>
+	        
+	        <!-- CONTACT NO -->
+	        <div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="contactno">Contact No :</label>
+	          <div class="col-sm-5">
+	            <input type="text" name="contactno" class="form-control input-sm" id="contactno" ng-model="contactno" readonly />
+	        </div>
+	        </div>
+	        
+	        <!-- E-MAIL -->
+	        <div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="email">Email :</label>
+	          <div class="col-sm-5">
+	            <input type="email" name="email" class="form-control input-sm" ng-model="email" id="email" readonly />
+	         </div>
+	        </div>
+	        
+	        <!-- Address -->
+	        <div class="form-group form-group-md">
+	          <label class="control-label col-sm-4" for="Address">Address :</label>
+	          <div class="col-md-5">
+	            <textarea rows="2" cols="40" class="form-control" name="address" ng-model="address" readonly ></textarea>
+	         </div>
+	        </div>
+	        
+	        <!-- GENDER -->
+	        <div class="form-group form-group-sm">
+	          <label class="control-label col-sm-4" for="gender">Gender :</label>
+	          <div class="col-sm-5">
+	          	<input type="text" name="gender" class="form-control input-sm" id="gender" ng-model="gender" readonly />
+			 </div>
+	        </div>
+	        
+	        <!-- DATE OF BIRTH -->
+	        <div class="form-group form-group-sm">
+	          <label for="dob" class="col-sm-4 control-label">Date Of Birth :</label>
+	             <div class="col-sm-5">
+	             	<input type="date" class="form-control input-sm" name="date" id="date" ui-date ng-model="date" readonly />
+	           </div>
+	        </div>
+	        
+	        <!-- DATE OF Joining -->
+	        <div class="form-group form-group-sm">
+	          <label for="dob" class="col-sm-4 control-label">Date Of Joining :</label>
+	             <div class="col-sm-5">
+	             	<input type="date" class="form-control input-sm" name="jdate" id="jdate" ui-date ng-model="jdate" readonly />
+	           </div>
+	        </div>
+	        
+	        <!-- USER TYPE -->
+	        <div class="form-group form-group-sm">
+			  <label class="control-label col-sm-4" for="userType">User Type :</label>
+			  	<div class="col-sm-5">
+					<input type="text" name="usertype" class="form-control input-sm" id="usertype" ng-model="usertype" readonly />
+				</div>
+			</div>
+	        
+	        <!-- Correction Comments -->
+	        <div class="form-group form-group-md" ng-class="{ 'has-error' : comments.$invalid && (comments.$dirty || submitted)}">
+	          <label class="control-label col-sm-4" for="Comments">Correction Comments :</label>
+	          <div class="col-md-5">
+	            <textarea rows="2" cols="40" class="form-control" name="comments" ng-model="comments" placeholder="Your Comments" ng-required="true" autofocus></textarea>
+	            <p ng-show="comments.$error.required && (comments.$dirty || submitted)" class="help-block">You Address is required.</p>
+	         </div>
+	        </div>
+	        
+	        <!-- FROM SUBMISSION -->
+	        <div class="form-group form-group-sm">        
+	          <div class="col-sm-offset-4 col-sm-5">
+	            <button ng-click="confirm()" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;Confirm</button>
+	            
+	            <button type="submit" ng-click="submitForm()" class="btn btn-primary btn-sm" ng-disabled="comments.$invalid"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Send For Correction</button>
+	          </div>
+	        
+	        </div>
+	      	</form>
+    	</div>
+    </div>
+    
+    <script src="js/angular.min.js"></script>
+    <script src="js/confirmation.js"></script>
+</body>
+</html>

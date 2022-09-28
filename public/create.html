@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Test</title>
+<script type="text/javascript">
+	var nAgt = navigator.userAgent;
+	var browserName  = navigator.appName;
+	var nameOffset,verOffset,ix;
+	
+	// In Opera, the true version is after "Opera" or after "Version"
+	if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+	 browserName = "Opera";
+	}
+	// In MSIE, the true version is after "MSIE" in userAgent
+	else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+	 browserName = "Microsoft Internet Explorer";
+	}
+	// In Chrome, the true version is after "Chrome" 
+	else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+	 browserName = "Chrome";
+	}
+	// In Safari, the true version is after "Safari" or after "Version" 
+	else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+	 browserName = "Safari";
+	}
+	// In Firefox, the true version is after "Firefox" 
+	else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+	 browserName = "Firefox";
+	}
+	// In most other browsers, "name/version" is at the end of userAgent 
+	else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < 
+	          (verOffset=nAgt.lastIndexOf('/')) ) 
+	{
+	 browserName = nAgt.substring(nameOffset,verOffset);
+	 fullVersion = nAgt.substring(verOffset+1);
+	 if (browserName.toLowerCase()==browserName.toUpperCase()) {
+	  browserName = navigator.appName;
+	 }
+	}
+	
+	 if (browserName == "Microsoft Internet Explorer") {
+	 document.write("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/create.css\">");
+	 }
+	 else if (browserName == "Firefox") {
+	 document.write("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/mozcreate.css\">");
+	 }
+	 else {
+	 document.write("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/create.css\">");
+	 }
+</script>
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="css/bootstrap-responsive.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap-datetimepicker.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/datepicker.css"  media="all" />
+	<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
+	
+</head>
+<body ng-app="myapp" ng-controller="mainController">
+	<div class="container">
+		<div class="row form-horizontal"><br>
+			<div class="col-md-7 col-md-offset-3 boundary">
+			
+			<!-- FORM : YOU CAN DISABLE, HTML5 VALIDATION BY USING "novalidate" ATTRIBUTE-->
+			<form class="form-horizontal" role="form" name="userForm" action="" ng-submit="submitForm()" novalidate>
+			
+			<!-- PAGE HEADER -->
+			<div id="header" class="page-header">
+			    <h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Create New User</h4>
+			</div>
+			<br>
+			
+			<div class="line col-md-6">
+			    <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.fname.$invalid && (userForm.fname.$dirty || submitted)}">
+			         <div class="col-sm-12">
+				         <label class="" for="firstName">First Name : &nbsp;</label>
+				         <span ng-show="userForm.fname.$error.required && (userForm.fname.$dirty || submitted)" class="label label-danger">Required!</span>
+				         <input type="text" name="fname" class="form-control input-sm" id="fname" ng-model="user.fname" placeholder="Your First Name" ng-required="true" autofocus />
+			         </div>
+			    </div>
+			    
+			    <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.contactno.$invalid  && (userForm.contactno.$dirty || submitted) }">
+		          <div class="col-sm-12">
+			          <label class="" for="contactno">Contact No :</label>
+			          <span ng-show="userForm.contactno.$error.pattern  && (userForm.contactno.$dirty || submitted)" class="label label-danger">Invalid Format!</span>
+			          <span ng-show="userForm.contactno.$error.required && (userForm.contactno.$dirty || submitted)" class="label label-danger">Required!</span>
+			          <input type="text" name="contactno" class="form-control input-sm" id="contactno" ng-model="user.contactno" placeholder="Your Contact No" ng-pattern="/^[0]\d{10}$/" maxlength="11" ng-required="true" />
+		          </div>
+		        </div>
+		        
+		        <div class="form-group form-group-md" ng-class="{ 'has-error' : userForm.address.$invalid && (userForm.address.$dirty || submitted)}">
+		          <div class="col-sm-12">
+			          	<label class="" for="Address">Address :</label>
+			          	<span ng-show="userForm.address.$error.required && (userForm.address.$dirty || submitted)" class="label label-danger">Required!</span>
+			            <textarea rows="2" cols="40" class="form-control" name="address" ng-model="user.address" placeholder="Your Address" ng-required="true"></textarea>
+		          </div>
+		        </div>
+		        
+		        <div class="form-group form-group-sm"  ng-class="{ 'has-error' : userForm.jdate.$invalid  && (userForm.jdate.$dirty || submitted)}">
+		          <div class="col-sm-12">
+		             <label for="dob" class="">Date Of Joining :</label>
+		             <span ng-show="userForm.jdate.$error.required  && (userForm.jdate.$dirty || submitted)" class="label label-danger">Required!</span>
+		             	<div class="input-group date form_date" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+			                <input class="form-control" type="text" name="jdate" uiDate ng-model="user.jdate" placeholder="Your Date Of Birth" ng-required="true" />
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			            </div>
+	               </div>
+		        </div>
+		        
+		        <hr>
+		        
+		        <div class="form-group form-group-sm" " ng-class="{ 'has-error' : userForm.username.$invalid && (userForm.username.$dirty || submitted)}">
+		           <div class="col-sm-12">
+		          	   <label class="" for="username">Username :</label>
+		          	   <span ng-show="userForm.username.$error.required && (userForm.username.$dirty || submitted)" class="label label-danger">Required!</span>
+				       <span ng-show="userForm.username.$error.minlength && (userForm.username.$dirty || submitted)" class="label label-danger">Too Short!</span>
+				       <span ng-show="userForm.username.$error.maxlength && (userForm.username.$dirty || submitted)" class="label label-danger">Too long!</span>
+				       <span ng-show="userForm.username.$error.pattern  && (userForm.username.$dirty || submitted)" class="label label-danger">Invalid Format!</span>
+				       <span ng-show="userForm.username.$error.isTaken  && (userForm.username.$dirty || submitted)" class="label label-danger">Username already taken!</span>
+			       	   <input type="text" name="username" id="username" class="form-control" ng-model="user.username" ng-pattern="/^[A-z0-9]+$/" placeholder="Your Username" ng-minlength="5" ng-maxlength="8" ng-required="true" />
+		           </div>
+		        </div>
+		          
+		        <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.password.$invalid && (userForm.password.$dirty || submitted)}">
+			        <div class="col-sm-12">  
+				       <label class="" for="password">Password :</label>
+				       <span ng-show="userForm.password.$error.required && (userForm.password.$dirty || submitted)" class="label label-danger">Required!</span>
+				       <span ng-show="userForm.password.$error.isWeak" class="label label-danger" >Must contain one upper &amp; lower case letter and a non-letter!</span>
+				       <span ng-show="userForm.password.$error.invalidLen" class="label label-danger" >Must be 8-20 characters.</span>
+				       <span ng-show="userForm.password.$error.pattern  && (userForm.password.$dirty || submitted)" class="label label-danger">Invalid Format!</span>       
+			           <input type="Password" name="password" class="form-control" ng-model="user.password" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" placeholder="Your Password" ng-required="true" />
+			      	</div>
+			    </div>
+		        
+			</div>
+			
+			<div class="divstyle col-md-6">
+				<div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.lname.$invalid && (userForm.lname.$dirty || submitted)}">
+				     <div class="col-sm-12">
+					     <label class="" for="lastName">Last Name : &nbsp;</label>
+					     <span ng-show="userForm.lname.$error.required && (userForm.lname.$dirty || submitted)" class="label label-danger">Required!</span>
+					     <input type="text" name="lname" class="form-control input-sm" id="lname" ng-model="user.lname" placeholder="Your Last Name" ng-required="true" />
+				     </div>
+				 </div>
+				 
+				 <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.email.$invalid && (userForm.email.$dirty || submitted)}">
+		          	<div class="col-sm-12">
+			          	<label class="" for="email">Email :</label>
+			          	<span ng-show="userForm.email.$error.required && (userForm.email.$dirty || submitted)" class="label label-danger">Required!</span>
+			          	<span ng-show="userForm.email.$error.email && (userForm.email.$dirty || submitted)" class="label label-danger">Invalid Format!</span>
+			            <input type="email" name="email" class="form-control input-sm" ng-model="user.email" id="email" placeholder="Your Email Address" ng-required="true" />
+		          	</div>
+		        </div>
+		        
+		        <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.gender.$invalid && (userForm.gender.$dirty || submitted)}">
+			       <div class="genderstyle col-sm-12">
+				        <label class="" for="gender">Gender :</label>
+				        <span ng-show="userForm.gender.$error.required && (userForm.gender.$dirty || submitted)" class="label label-danger">Required!</span>
+						<br>
+						<label class="radio-inline" for="gender">
+					    <input type="radio" name="gender" id="gender" value="male" ng-model="user.gender" ng-required="true" />Male
+						</label>
+						<label class="radio-inline">
+					    <input type="radio" name="gender" id="gender" value="Female" ng-model="user.gender" ng-required="true" />Female
+					    </label>
+			       </div>
+		        </div>
+		        
+		        <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.date.$invalid  && (userForm.date.$dirty || submitted)}">
+		          <div class="col-sm-12">
+		          		<label for="dob" class="">Date Of Birth :</label>
+		          		<span ng-show="userForm.date.$error.required  && (userForm.date.$dirty || submitted)" class="label label-danger">Required!</span>
+		                <br>
+		                <input type="text" name="date" id="date" data-date-format="yyyy-MM-dd" ui-date ng-model="user.date" ng-required="true" >
+		            </div>
+		        </div>
+		        
+		         <hr>
+		        
+		        <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.usertype.$invalid  && (userForm.usertype.$dirty || submitted)}">
+				  <div class="col-sm-12">
+				  	  <label class="" for="userType">User Type :</label>
+				  	  <span ng-show="userForm.usertype.$error.required  && (userForm.usertype.$dirty || submitted)" class="label label-danger">Required!</span>
+					  <select name="usertype" class="form-control input-sm" id="usertype" ng-model="user.usertype" ng-options="usertype.usertypeId as usertype.Name for usertype in usertypeList" ng-required="true">
+					  	<option  value=''>Select</option>
+					  </select>
+				  </div>
+				</div>
+				
+				<div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.confirmPassword.$invalid && (userForm.confirmPassword.$dirty || submitted)}">
+		          <div class="col-sm-12">
+		          	<label class="" for="confirmPassword">Confirm Password :</label>
+		          	<span ng-show="userForm.confirmPassword.$error.required && (userForm.confirmPassword.$dirty || submitted)" class="label label-danger">Required!</span>
+		          	<span ng-show="userForm.confirmPassword.$error.compare  && (userForm.confirmPassword.$dirty || submitted)" class="label label-danger">Password Does't match!</span>  
+		            <input type="Password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword" placeholder="Confirm Your Password" ng-compare="password" ng-required="true" /> 
+		          </div>
+		        </div>
+		        
+			</div>
+			
+			<!-- TERMS & CONDITIONS -->
+		    <div class="form-group form-group-sm" ng-class="{ 'has-error' : userForm.terms.$invalid && (userForm.terms.$dirty || submitted)}">        
+		        <div class="col-sm-offset-4 col-sm-7">
+		            <div class="checkbox">
+		              <label for="terms">
+			              <input type="checkbox" value="" name="terms" ng-model="user.terms" ng-required="true" />
+			              I accept terms & conditions.
+		              	  <span ng-show="userForm.terms.$error.required && (userForm.terms.$dirty || submitted)" class="label label-danger">Required!</span>
+		              </label>
+		            </div>
+		        </div>
+		          
+		    </div>
+		        
+			<!-- FROM SUBMISSION -->
+			<div class="form-group form-group-sm">        
+			    <div class="col-sm-offset-4 col-sm-7">
+			        <button type="submit" class="btn btn-primary btn-sm" ng-disabled="userForm.$invalid"><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;Submit</button>
+					<button type="reset" class="btn btn-link btn-sm" ng-click="reset()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reset</button>
+			    </div>
+			</div>
+			</form>
+			
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="jquery/jquery.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+	<script type="text/javascript" src="js/combodate.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/create.js"></script>
+    <script src="js/date.js"></script>
+	<script>
+		$(function(){
+		$('#date').combodate();
+		});
+	</script>
+	<script type="text/javascript">
+		$('.form_date').datetimepicker({
+			language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+        	autoclose: 1,
+        	todayHighlight: 1,
+        	startView: 2,
+        	minView: 2,
+        	forceParse: 0
+         });
+    </script>         
+</body>
+</html>

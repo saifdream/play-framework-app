@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>User Information</title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap-datetimepicker.min.css"  media="all" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/datepicker.css"  media="all" />
+	<link rel="stylesheet" href="bootstrap/css/jquery-ui.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/create.css"  media="all" />
+	
+</head>
+<body>
+<section>
+	<div class="container">
+	
+		<div class="row form-horizontal"><br>
+		
+			<div class="col-md-7 col-md-offset-3 boundary">
+			
+			<!-- FORM : YOU CAN DISABLE, HTML5 VALIDATION BY USING "novalidate" ATTRIBUTE-->
+			<form class="form-horizontal" role="form" id="userForm" action="" novalidate>
+			
+			<!-- PAGE HEADER -->
+			<div id="header" class="page-header">
+			    <h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User Information</h4>
+			</div>
+			<br>
+			
+			<div class="line col-md-6">
+				<!-- FIRST NAME -->
+			    <div class="form-group form-group-sm">
+			         <div class="col-sm-12">
+				         <label class="" for="firstName">First Name : &nbsp;</label>
+				         Md Saiful
+			         </div>
+			    </div>
+			    
+			    <!-- LAST NAME -->
+			    <div class="form-group form-group-sm">
+				     <div class="col-sm-12">
+					     <label class="" for="lastName">Last Name : &nbsp;</label>
+					     Islam
+				     </div>
+				</div>
+				
+				<!-- GENDER -->
+				<div class="form-group form-group-sm">
+			       <div class="col-sm-12">
+				        <label class="" for="gender">Gender :</label>
+						Male
+			       </div>
+		        </div>
+			    
+			     <!-- CONTACT NO -->
+			    <div class="form-group form-group-sm">
+		          <div class="col-sm-12">
+			          <label class="" for="contactno">Contact No :</label>
+			          01612205942
+		          </div>
+		        </div>
+		        
+		        <!-- Address -->
+		        <div class="form-group form-group-md">
+		          <div class="col-sm-12">
+			         <label class="" for="Address">Address :</label>
+                     <address>
+			            House # 669/C, Mizmizi, Kandhapara,
+                        Narayangonj Sadar, Narayangonj
+                     </address>
+		          </div>
+		        </div>
+		        
+			</div>
+			
+			<div class="divstyle col-md-6">
+				<!-- E-MAIL -->
+				<div class="form-group form-group-sm">
+		          	<div class="col-sm-12">
+			          	<label class="" for="email">Email :</label>
+			            saif89.2012@gmail.com
+		          	</div>
+		        </div>
+				
+				<!-- USERNAME -->
+				<div class="form-group form-group-sm">
+		           <div class="col-sm-12">
+		          	   <label class="" for="username">Username :</label>
+			       	   saif89
+		           </div>
+		        </div>
+		        
+		        <!-- USER TYPE -->
+		        <div class="form-group form-group-sm">
+				  <div class="col-sm-12">
+				  	  <label class="" for="userType">User Type :</label>
+					  Executive
+				  </div>
+				</div>
+				
+				<!-- DATE OF Joining -->
+				<div class="form-group form-group-sm">
+		          <div class="col-sm-12">
+		             <label for="doj" class="">Date Of Joining :</label>
+                     20-December-2014
+	               </div>
+		        </div>
+		        
+                <!-- DATE OF BIRTH -->
+		        <div class="from-inline form-group form-group-sm">
+		          <div class="col-sm-12">
+		          		<label for="dob" class="">Date Of Birth :</label>
+		                01-January-1989
+		            </div>
+		        </div>
+
+			</div>
+			
+			</form>
+			
+			</div>
+		</div>
+        <br>
+	</div>
+</section>
+	<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/moment.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/combodate.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap-datepicker.min.js"></script>
+	<script>
+	    $(function(){
+		    $('#date').combodate();
+	});
+	</script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+			language:  'en',
+            weekStart: 1,
+            todayBtn:  1,
+        	autoclose: 1,
+        	todayHighlight: 1,
+        	startView: 2,
+        	minView: 2,
+        	forceParse: 0
+         });
+        });
+    </script>     
+</body>
+</html>

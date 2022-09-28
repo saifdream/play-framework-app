@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User's List</title>
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="css/ng-table.css">
+	<link rel="stylesheet" href="css/create.css">
+</head>
+<body ng-app="userlist">
+	
+	<div class="container" ng-controller="userlistController">
+	<!-- PAGE HEADER -->
+	<div id="header" class="page-header">
+		<h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User's List</h4>
+	</div>
+	<div class="table-responsive">
+		<form action="" class="animate-container">
+			<table ng-table="tableParams" class="table table-striped table-condensed ng-scope" id="searchObjResults" >
+			<thead>
+				<tr>
+					<th><input class="form-control input-sm" ng-model="search.fname" placeholder="Search" ></th>
+					<th><input class="form-control input-sm" ng-model="search.lname" placeholder="Search" > </th>
+					<th><input class="form-control input-sm" ng-model="search.address" placeholder="Search" > </th>
+					<th><input class="form-control input-sm" ng-model="search.email" placeholder="Search" > </th>
+					<th><input class="form-control input-sm" ng-model="search.contact" placeholder="Search" > </th>
+					<th><input class="form-control input-sm" ng-model="search.age" placeholder="Search" > </th>
+					<th><input class="form-control input-sm" ng-model="search.role" placeholder="Search" > </th>
+				</tr>
+			    <tr>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('fname', reverse)"><p>F. Name &nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('lname', reverse)"><p>L. Name &nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('address', reverse)"><p>Address &nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('email', reverse)"><p>E-mail &nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('contact', reverse)"><p>Contact &nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('age',reverse)"><p>Age &nbsp;&nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			      <th><button class="btn btn-link btn-sm" ng-click="reverse=!reverse;order('role', reverse)"><p>Role &nbsp;<span class="glyphicon glyphicon-filter"></span></p></button></th>
+			    </tr>
+			</thead>
+			<tbody>
+			    <tr class="animate-repeat" ng-repeat="user in users | filter:search">
+			      <td data-title="'F. Name'" sortable="fname">{{$index + 1}}.&nbsp;&nbsp;{{user.fname}}</td>
+			      <td data-title="'L. Name'" sortable="lname">{{user.lname}}</td>
+			      <td data-title="'Address'" sortable="address">{{user.address}}</td>
+			      <td data-title="'E-mail'" sortable="email">{{user.email}}</td>
+			      <td data-title="'Contact'" sortable="contact">{{user.contact}}</td>
+			      <td data-title="'Age'" sortable="age">{{user.age}}</td>
+			      <td data-title="'Role'" sortable="role">{{user.role}}</td>
+			    </tr>
+			    <!--tr class="animate-repeat" ng-if="search.length == 0">
+			    	<td><strong>No results found...</strong></td>
+			    </tr-->
+			</tbody>
+			</table>
+		</form>
+	</div>
+	</div>
+
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-table.min.js"></script>
+	<script src="js/list.js"></script>
+	<script type="text/javascript" src="jquery/jquery-2.0.3.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/ng-table.js"></script>
+	
+</body>
+</html>

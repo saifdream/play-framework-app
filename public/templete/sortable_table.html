@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>angular-table : sortable tables with pagination for angularjs</title>
+
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="css/create.css">
+	<link rel="stylesheet" type="text/css" href="css/syntax.css">
+
+</head>
+<body>
+	<div class="container" ng-app="angular-table-example" ng-controller="example-ctrl">
+	
+ 		<!-- PAGE HEADER -->
+		<div id="header" class="page-header">
+			<h4><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User's List</h4>
+		</div>
+		
+		<!-- angular-tabs -->
+  		<angular-tabs id="mainTabs" active-tab="Basic Example">
+  		
+  		<!-- Basic Example -->
+    	<div class="container" tab-title="Basic Example"><br>
+	        <div tab-title="Result">
+				<div class="container" ng-controller="basicExampleCtrl">
+					<div class="col-md-10">
+						<table class="table table-responsive table-striped table-condensed" at-table at-paginated at-list="list" at-config="config">
+						  	<thead></thead>
+							<tbody>
+								<tr>
+							      <td at-implicit at-sortable at-attribute="id"></td>
+							      <td at-implicit at-sortable at-attribute="name"></td>
+							      <td at-implicit at-sortable at-attribute="age"></td>
+							      <td at-implicit at-sortable at-attribute="birthdate"></td>
+							      <td at-implicit at-sortable at-attribute="address"></td>
+							      <td at-implicit at-sortable at-attribute="role"></td>
+							    </tr>
+							</tbody>
+						</table>
+						<center><at-pagination at-list="list" at-config="config"></at-pagination></center>
+	            	</div>
+				</div>
+	        </div>
+		</div>
+		
+		<!-- Interactive Example -->
+		
+		<div class="container" tab-title="Interactive Example"><br>
+			<div tab-title="Result">
+				<div class="container" ng-controller="interactiveExampleCtrl">
+					<div class="col-sm-2">
+						<h4><span class="glyphicon glyphicon-filter"></span>&nbsp;&nbsp;Filter :</h4><hr>
+						<label class="control-label">ID :</label>
+						<input type="text" class="form-control input-sm" ng-model="id" ng-change="updateFilteredId()" placeholder="Search" ><br>
+						<label class="control-label">Name :</label>
+						<input type="text" class="form-control input-sm" ng-model="name" ng-change="updateFilteredName()" placeholder="Search" ><br>
+						<label class="control-label">Age :</label>
+						<input type="text" class="form-control input-sm" ng-model="age" ng-change="updateFilteredAge()" placeholder="Search" ><br>
+						<label class="control-label">Birth Date :</label>
+						<input type="text" class="form-control input-sm" ng-model="birthdate" ng-change="updateFilteredBirthdate()" placeholder="Search" ><br>
+						<input type="reset" value="Clear" class="btn btn-default btn-sm">
+					</div>
+					<div class="col-sm-9">
+						<br><br><br>
+						<table class="table table-striped table-condensed table-responsive" at-table at-paginated at-list="filteredList" at-config="config">
+							<thead></thead>
+					  		<tbody>
+						    	<tr>
+						      		<td at-implicit at-sortable at-attribute="id" at-initial-sorting="asc"></td>
+							     	<td at-implicit at-sortable at-attribute="name"></td>
+							    	<td at-implicit at-sortable at-attribute="age"></td>
+							    	<td at-implicit at-sortable at-attribute="birthdate"></td>
+						    	</tr>
+					  		</tbody>
+						</table>
+						<center><at-pagination at-list="filteredList" at-config="config"></at-pagination></center>
+	            	</div>
+				</div>
+	        </div>
+			</div>
+      	</angular-tabs>
+	</div>
+	
+	<script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-table.min.js"></script>
+    <script type="text/javascript" src="js/angular-tabs.min.js"></script>
+    <script type="text/javascript" src="js/examplesModule.js"></script>
+    
+</body>
+</html>

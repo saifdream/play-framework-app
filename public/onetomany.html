@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html ng-app="SalesApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Purchase Entry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User's List</title>
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link data-require="bootstrap-css@3.0.1" data-semver="3.0.1" rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="css/create.css">
+</head>
+<body ng-controller="ProductCtrl">
+	<div class="container">
+		<form class="form-horizontal" name="sales" ng-submit="submit(sales)" action="saledb.jsp" method="post">
+		<!-- PAGE HEADER -->
+	    <div id="header" class="page-header">
+	    	<h4><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;New Sale Details</h4>
+		</div>
+		<div class="container-fluid form-horizontal">
+			<div class="row-fluid">
+			<div class="span7">
+				<div class="form-group form-group-sm">
+				  <label class="control-label col-sm-1"></label>
+		          <div class="col-sm-6">
+		            <h4 style="color:#0b7f05;"><span class="glyphicon glyphicon-user"></span> &nbsp;Customer's Details</h4><hr>
+		          </div>
+		        </div>
+		        
+				<!-- Bill To -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="fname">Bill To :</label>
+		          <div class="col-sm-8">
+		            <input type="text" name="BillTo" ng-model="customer.BillTo" class="form-control input-sm" placeholder="Bill To" required size="40">
+		          </div>
+		        </div>
+		        
+		        <!-- E-mail : -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="fname">E-mail :</label>
+		          <div class="col-sm-8">
+		            <input type="email" name="Email" ng-model="customer.Email" class="form-control input-sm" placeholder="E-mail" required size="35">
+		          </div>
+		        </div>
+		        
+		        <!-- Payment Type -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="fname">Payment Type :</label>
+		          <div class="col-sm-8">
+		            <select name="PaymentType" ng-model="customer.PaymentType" class="form-control input-sm" ng-options="type for type in PaymentType" required>
+						<option  value=''>Select</option>
+					</select>
+		          </div>
+		        </div>
+		        
+		        <!-- Phone -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="fname">Phone :</label>
+		          <div class="col-sm-8">
+		          	<input type="text" name="Phone" ng-model="customer.Phone" class="form-control input-sm" placeholder="Phone" required>
+				  </div>
+		        </div>
+		        
+		        <!-- Address -->
+		      	<div class="form-group form-group-md">
+		          <label class="control-label col-sm-4" for="fname">Address :</label>
+		          <div class="col-sm-8">
+		          	<textarea rows="2" cols="40" name="Address" ng-model="customer.Address" class="form-control input-sm" placeholder="Address" required></textarea>
+				  </div>
+		        </div>
+		        
+		        <!-- Customer Type -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4" for="fname">Customer Type:</label>
+		          <div class="col-sm-8"><select name="CustomerType" ng-model="customer.CustomerType" class="form-control input-sm" ng-options="type for type in CustomerType" required>
+						<option  value=''>Select</option>
+					</select>
+				  </div>
+		        </div>
+			</div>
+			<div class="form-horizontal span5">
+				<!-- Add Product -->
+		      	<div class="form-group form-group-sm">
+		      	  <label class="control-label col-sm-1"></label>
+		          <div class="col-sm-6">
+		            <h4 style="color:#0b7f05;">Add a Product</h4><hr>
+		          </div>
+		        </div>
+			
+		        <!-- ID -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4">ID :</label>
+		          <div class="col-sm-7">
+		            <input type="hidden" min="1" class="form-control" name="sl" ng-model="sl" />
+		            <input type="text" class="form-control input-sm" name="id" placeholder="Enter Product ID" ng-model="id" ng-keyup="getProduct()" />
+		          </div>
+		        </div>
+		        
+		        <!-- Name -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4">Name :</label>
+		          <div class="col-sm-7">
+		            <input type="text" class="form-control input-sm" name="name" ng-model="name" readonly="readonly" />
+		          </div>
+		        </div>
+		        
+		        <!-- Details -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4">Details :</label>
+		          <div class="col-sm-7">
+		            <input type="text" class="form-control input-sm" name="description" ng-model="description" readonly="readonly" />
+		          </div>
+		        </div>
+		        
+		        <!-- Qty -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4">Qty :</label>
+		          <div class="col-sm-7">
+		            <input type="number" min="1" class="form-control input-sm" name="quantity" placeholder="Product Quantity" ng-model="quantity" ng-change="updateAmount()" />
+		          </div>
+		        </div>
+		        
+		        <!-- Price -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4">Price :</label>
+		          <div class="col-sm-7">
+		            <input type="text" min="1" class="form-control input-sm" name="price" ng-model="price" readonly="readonly" />
+		          </div>
+		        </div>
+		        
+		        <!-- Amount -->
+		      	<div class="form-group form-group-sm">
+		          <label class="control-label col-sm-4">Amount :</label>
+		          <div class="col-sm-7">
+		            <input type="text" class="form-control input-sm" name="amount" ng-model="amount" readonly="readonly"/>
+		          </div>
+		        </div>
+		        
+		        <!-- Add Product -->
+		      	<div class="form-group form-group-sm">
+		      	  <label class="control-label col-sm-4"></label>
+		          <div class="col-sm-7" id="myButtons">
+		            <input type="button" value="Add Product" class="btn btn-default btn-sm" data-loading-text="Adding ..." ng-click="addRow()" ng-disabled="" />
+		          </div>
+		        </div>
+			</div>
+		</div>
+		<hr>
+		</div>
+		
+		<div class="table-responsive">
+			<table style="width:100%" class="table table-condensed">
+				<thead>
+					<tr>
+						<th> Sl.</th>
+						<th> ID </th>
+						<th> Name </th>
+						<th> Quantity </th>
+						<th> Price </th>
+						<th> Amount</th>
+						<th> Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="product in products track by $index">
+						<td> {{$index + 1}} </td> 
+						<td> {{product.id}} </td>
+						<td> {{product.name}} </td>
+						<td> {{product.quantity}} </td>
+						<td> {{product.price}}/- </td>
+						<td> {{product.amount}}/- </td>
+						<td>
+							<input type="button" value="Remove" class="btn btn-default btn-xs" ng-click="removeRow(product.id)"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" align="right"><b>Total(BDT) =</b></td>
+						<td>
+							<b>{{getTotal()}}/-</b>
+							<input type="hidden" class="form-control" name="totalAmount" ng-model="totalAmount" />
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+	
+	<script src="js/angular.min.js"></script>
+	<script src="js/onetomany.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    
+	<script type="text/javascript">  
+    $(document).ready(function(){ 
+        $("#myButtons .btn").click(function(){
+            $(this).button('loading').delay(1000).queue(function() {
+                $(this).button('reset');
+                $(this).dequeue();
+            });        
+        });
+    });
+    
+    $(document).ready(function () {
+    	$('.dropdown').on("mouseenter",function(){
+            $(this).addClass('open');
+        }).on('mouseleave',function(){
+            $(this).removeClass('open'); 
+        });
+        
+    	$('.post:last').addClass('last');
+    	$('.widget_featured_entries li:last').addClass('last');
+    	$('#cancel-comment-reply-link').on('click', function(){
+    		$('#commentform').each (function(){
+    		  this.reset();
+    		});
+    	});
+    });
+    
+    $(document).ready(function(){
+    	$("#myModal").on('show.bs.modal', function(event){
+            var button = $(event.relatedTarget);  // Button that triggered the modal
+            var titleData = button.data('title'); // Extract value from data-* attributes
+            $(this).find('.modal-title').text(titleData + ' Form');
+        });
+    });
+	</script>
+</body>
+</html>
